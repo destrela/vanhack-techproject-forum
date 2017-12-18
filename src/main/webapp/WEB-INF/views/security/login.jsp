@@ -6,6 +6,12 @@
 <html lang="en">
 <head>
 	<c:import url="/WEB-INF/views/tags/head.jsp"></c:import>
+	<style>
+	.col-centered{
+	    float: none;
+	    margin: 0 auto;
+	}
+	</style>
 </head>
 <body>
 
@@ -13,23 +19,23 @@
 
 	<div class="container-fluid">
 		<div class="row flex-xl-nowrap">
-			<div class="col-12 py-md-3 pl-md-3 bd-content" role="main">
+			<div class="col-3 py-md-3 pl-md-3 bd-content col-centered" role="main">
 
-			<h1 class="bd-title" id="content">New Topic</h1>
+			<h1 class="bd-title" id="content">Login</h1>
 			<br />
 
-			<form method="post">
+			<form method="post"	>
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 				<div class="form-group">
-					<label for="textHeadline">Headline</label>
-					<input type="text" class="form-control" name="headline" />
+					<label for="username">Username</label>
+					<input type="text" class="form-control" name="username" />
 				</div>
 				<div class="form-group">
-					<label for="textDescription">Description</label>
-					<textarea class="form-control" rows="5" name="text"></textarea>
+					<label for="password">Password</label>
+					<input type="password" class="form-control" name="password" />
 				</div>
 				<div class="form-group">
-					<button type="submit" class="btn btn-outline-success">Create</button>
+					<button type="submit" class="btn btn-outline-success">Login</button>
 					<a class="btn btn-outline-danger" href="${pageContext.request.contextPath}">Cancel</a>
 				</div>
 			</form>

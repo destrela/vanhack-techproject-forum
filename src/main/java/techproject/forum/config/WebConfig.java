@@ -14,7 +14,7 @@ import org.springframework.web.servlet.view.JstlView;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = { "techproject.forum" })
-public class WebInitializer implements WebMvcConfigurer {
+public class WebConfig implements WebMvcConfigurer {
 
 	@Bean
 	public InternalResourceViewResolver resolver() {

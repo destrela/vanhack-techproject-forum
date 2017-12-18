@@ -4,13 +4,12 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -57,21 +56,25 @@ public class TopicController {
         return "/topic/view";
     }
     
+    @Secured("ROLE_USER")
     @RequestMapping("/new")
     public String newTopic() {
         return "/topic/new";
     }
     
+    @Secured("ROLE_USER")
     @RequestMapping(value = "/new", method = RequestMethod.POST)
     public String saveTopic(
     		@RequestParam("headline") String headline,
     		@RequestParam("text") String text,
     		Model model) {
+    	
+	    	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
     		Topic topic = new Topic();
     		topic.setHeadline(headline);
     		topic.setText(text);
-		topic.setAuthor("author");
+		topic.setAuthor(authentication.getName().toLowerCase());
 		topic.setCreated(new Date());
 		
 		topicService.create(topic);
@@ -79,13 +82,16 @@ public class TopicController {
     		return this.list(model);
     }
     
+    @Secured("ROLE_USER")
     @RequestMapping(value = "/post", method = RequestMethod.POST)
     public String saveTopic(
     		@RequestParam("text") String text,
     		@RequestParam("topic") long topic,
     		Model model) {
+    	
+    		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-    		this.topicService.post(text, "poster", topic);
+    		this.topicService.post(text, authentication.getName().toLowerCase(), topic);
     	
     		return this.view(topic, model);
     }

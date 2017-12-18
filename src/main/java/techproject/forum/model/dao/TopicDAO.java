@@ -16,7 +16,7 @@ public class TopicDAO extends GenericDAO<Topic> {
         		"select o from Topic o " +
         		" where (headline like :SEARCH or text like :SEARCH) " +
         		" order by " + orderBy)
-			.setParameter("SEARCH", search);
+			.setParameter("SEARCH", "%" + search + "%");
         
         return (List<Topic>)query.getResultList();
 	}	

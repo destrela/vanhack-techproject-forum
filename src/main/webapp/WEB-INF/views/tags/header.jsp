@@ -1,6 +1,7 @@
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <header class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
-	<a class="navbar-brand" href="${pageContext.request.contextPath}">Tech
-		Project - Forum</a>
+	<a class="navbar-brand" href="${pageContext.request.contextPath}">Dead Simple Forum</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse"
 		data-target="#navbarSupportedContent"
 		aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -19,13 +20,17 @@
 				aria-expanded="false"><i class="fa fa-user-circle"
 					aria-hidden="true"></i></a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<a class="dropdown-item" href="#">Username</a>
+					<sec:authorize access="hasRole('USER')">
+					<a class="dropdown-item" href="#"><sec:authentication property="principal.username" /></a>
 					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#">Logout</a>
-				</div></li>
+					</sec:authorize>
+					<a class="dropdown-item" href="${pageContext.request.contextPath}/security/login?logout">Logout</a>
+				</div>
+			</li>
 		</ul>
 
 		<form class="form-inline my-2 my-lg-0" method="post" action="${pageContext.request.contextPath}/topic/list">
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 			<input class="form-control mr-sm-2" type="search"
 				placeholder="Search" aria-label="Search" name="search" value="${search}">
 			<button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
