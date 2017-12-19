@@ -15,30 +15,34 @@
 </head>
 <body>
 
-	<c:import url="/WEB-INF/views/tags/header.jsp"></c:import>
-
-	<div class="container-fluid">
-		<div class="row flex-xl-nowrap">
-			<div class="col-3 py-md-3 pl-md-3 bd-content col-centered" role="main">
-
-			<h1 class="bd-title" id="content">Login</h1>
-			<br />
-
-			<form method="post"	>
-				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-				<div class="form-group">
-					<label for="username">Username</label>
-					<input type="text" class="form-control" name="username" />
+	<div class="container">
+		<c:import url="/WEB-INF/views/tags/header.jsp"></c:import>
+		<br />
+		<div class="col-3 col-centered bd-content" role="main">
+			<div class="card">
+				<div class="card-header">
+					<h4>Login</h4>
 				</div>
-				<div class="form-group">
-					<label for="password">Password</label>
-					<input type="password" class="form-control" name="password" />
+
+				<div class="card-body">
+					<form method="post">
+						<input type="hidden" name="${_csrf.parameterName}"
+							value="${_csrf.token}" />
+						<div class="form-group">
+							<label for="username">Username</label> <input type="text"
+								class="form-control" name="username" />
+						</div>
+						<div class="form-group">
+							<label for="password">Password</label> <input type="password"
+								class="form-control" name="password" />
+						</div>
+						<div class="form-group">
+							<button type="submit" class="btn btn-outline-success">Login</button>
+							<a class="btn btn-outline-danger"
+								href="${pageContext.request.contextPath}">Cancel</a>
+						</div>
+					</form>
 				</div>
-				<div class="form-group">
-					<button type="submit" class="btn btn-outline-success">Login</button>
-					<a class="btn btn-outline-danger" href="${pageContext.request.contextPath}">Cancel</a>
-				</div>
-			</form>
 			</div>
 		</div>
 	</div>

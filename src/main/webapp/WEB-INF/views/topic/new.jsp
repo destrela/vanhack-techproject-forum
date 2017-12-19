@@ -9,16 +9,17 @@
 </head>
 <body>
 
-	<c:import url="/WEB-INF/views/tags/header.jsp"></c:import>
-
-	<div class="container-fluid">
-		<div class="row flex-xl-nowrap">
-			<div class="col-12 py-md-3 pl-md-3 bd-content" role="main">
-
-			<h1 class="bd-title" id="content">New Topic</h1>
-			<br />
-
-			<form method="post">
+	<div class="container">
+		<c:import url="/WEB-INF/views/tags/header.jsp"></c:import>
+		<br />
+		<div class="bd-content" role="main">
+			<div class="card">
+				<div class="card-header">
+					<h4>New Topic</h4>
+				</div>
+				
+				<div class="card-body">
+				<form method="post">
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 				<div class="form-group">
 					<label for="textHeadline">Headline</label>
@@ -33,6 +34,7 @@
 					<a class="btn btn-outline-danger" href="${pageContext.request.contextPath}">Cancel</a>
 				</div>
 			</form>
+				</div>
 			</div>
 		</div>
 	</div>
