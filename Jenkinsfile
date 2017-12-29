@@ -38,12 +38,6 @@ pipeline {
             }
         }
         stage('Deploy') {
-            agent {
-                docker {
-                    image 'tomcat:alpine'
-                    args '-v /Work/daniel:/home -v build:/build'
-                }
-            }
             when {
                 branch 'master'
             }
