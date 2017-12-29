@@ -33,6 +33,7 @@ pipeline {
             }
             steps{
                 sh 'cp /home/sandbox/vanhack-techproject-forum/target/*.war /usr/local/tomcat/webapps'
+                sh '/usr/local/tomcat/bin/startup.sh'
                 input message: 'Should I have to proceed with production deploy?'
             }
         }
