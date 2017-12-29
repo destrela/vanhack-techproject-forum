@@ -15,12 +15,12 @@ pipeline {
                 sh 'mvn package'
             }
         }
-        stage('Test') {
+ /*       stage('Test') {
             steps {
                 sh 'mvn test'
             }
         }
-
+*/
         stage('Staging') {
             agent {
                 docker {
