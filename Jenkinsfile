@@ -48,7 +48,8 @@ pipeline {
                 branch 'master'
             }
             steps{
-                sh 'cp /home/sandbox/vanhack-techproject-forum/target/*.war /build'
+//               sh 'cp /home/sandbox/vanhack-techproject-forum/target/*.war /build'
+                sh 'docker exec vanhack-forum cp /build/*.war /usr/local/tomcat/webapp'
             }
         }
     }
