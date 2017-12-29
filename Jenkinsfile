@@ -25,7 +25,7 @@ pipeline {
             agent {
                 docker {
                     image 'tomcat:alpine'
-                    args '-v build.dev:/build.dev -v build:/build -p 8081:8080'
+                    args '-v build.dev:/build.dev -p 8081:8080'
                 }
             }
             when {
@@ -34,7 +34,21 @@ pipeline {
             steps{
                 sh 'cp /home/sandbox/vanhack-techproject-forum/target/*.war /usr/local/tomcat/webapps'
                 sh '/usr/local/tomcat/bin/startup.sh'
-                input message: 'Should I have to proceed with production deploy?'
+                input message: 'Should I have proceed with the web site shutdown?'
+            }
+        }
+        stage('Deploy') {
+            agent {
+                docker {
+                    image 'tomcat:alpine'
+                    args '-v /Work/daniel:/home -v build:/build'
+                }
+            }
+            when {
+                branch 'master'
+            }
+            steps{
+                sh 'cp /home/sandbox/vanhack-techproject-forum/target/*.war /build'
             }
         }
     }
