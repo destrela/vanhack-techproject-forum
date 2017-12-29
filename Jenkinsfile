@@ -5,7 +5,7 @@ pipeline {
             agent {
                 docker {
                     image 'maven:alpine'
-                    args '-v /root/.m2:/root/.m2 -v /Work/daniel:/home'
+                    args '-v /root/.m2:/root/.m2 -v /Work/daniel:/home -w /home/sandbox/vanhack-techproject-forum'
                 }
             }
             environment {
