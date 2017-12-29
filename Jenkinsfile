@@ -25,7 +25,7 @@ pipeline {
             agent {
                 docker {
                     image 'tomcat:alpine'
-                    args '-v build.dev:/build.dev -v build:/build'
+                    args '-v build.dev:/build.dev -v build:/build -p 8081:8080'
                 }
             }
             when {
