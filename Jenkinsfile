@@ -43,7 +43,7 @@ pipeline {
             }
             steps{
 //               sh 'cp /home/sandbox/vanhack-techproject-forum/target/*.war /build'
-                sh 'docker exec vanhack-forum cp /build/forum-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapp'
+                sh 'docker exec vanhack-forum cp /build/forum-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps'
             }
         }
     }
