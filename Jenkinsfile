@@ -1,15 +1,16 @@
 pipeline {
-    agent {
-        docker {
-            image 'maven:alpine'
-            args '-v /root/.m2:/root/.m2'
-        }
-    }
-    environment {
-        CI = 'true'
-    }
+    agent any
     stages {
         stage('Build') {
+            agent {
+                docker {
+                    image 'maven:alpine'
+                    args '-v /root/.m2:/root/.m2'
+                }
+            }
+            environment {
+                CI = 'true'
+            }
             steps {
                 sh 'mvn package'
             }
@@ -19,16 +20,14 @@ pipeline {
                 sh 'mvn test'
             }
         }
-    }
 
-    agent {
-        docker {
-            image 'tomcat:alpine'
-            args '-v build.dev:/build.dev -v build:/build'
-        }
-    }
-    stages{
         stage('Staging') {
+            agent {
+                docker {
+                    image 'tomcat:alpine'
+                    args '-v build.dev:/build.dev -v build:/build'
+                }
+            }
             when {
                 branch 'development'
             }
