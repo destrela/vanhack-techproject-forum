@@ -12,7 +12,7 @@ pipeline {
                 CI = 'true'
             }
             steps {
-                sh 'cd /home/sandbox/vanhack-techproject-forum; mvn package'
+                sh 'mvn package'
             }
         }
  /*       stage('Test') {
