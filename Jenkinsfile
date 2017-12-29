@@ -2,6 +2,7 @@ pipeline {
     agent {
         docker {
             image 'maven:alpine'
+            additionalBuildArgs '-v /root/.m2:/root/.m2'
         }
     }
     environment {
