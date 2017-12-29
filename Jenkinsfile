@@ -5,14 +5,14 @@ pipeline {
             agent {
                 docker {
                     image 'maven:alpine'
-                    args '-v /root/.m2:/root/.m2 -v /Work/daniel:/home'
+                    args '-v /root/.m2:/root/.m2 -v /home:/home'
                 }
             }
             environment {
                 CI = 'true'
             }
             steps {
-                sh 'mvn package'
+                sh 'cd /home/sandbox/vanhack-techproject-forum; mvn package'
             }
         }
  /*       stage('Test') {
