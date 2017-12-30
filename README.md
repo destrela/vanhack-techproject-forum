@@ -113,8 +113,3 @@ One advantage of the command 'mvn package', in this specific case of a very simp
 Once again, because the application is so simple and don't have any disk persistence layer, only a Tomcat server is sufficient to run the application. We don't need any database or front-end server.
 
 A drawback of this model is the lack of redundancy and consequently, lack of high avaiability.
-
-## Basic development workflow
-
-
-It is just a DEMO and should not forked nor used as a baseline for any other projects.
