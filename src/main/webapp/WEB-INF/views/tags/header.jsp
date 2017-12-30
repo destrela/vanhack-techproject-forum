@@ -3,7 +3,7 @@
 
 <header class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
 	<a class="navbar-brand" href="${pageContext.request.contextPath}">Dead
-		Simple Forum (not so dead)</a>
+		Simple Forum</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse"
 		data-target="#navbarSupportedContent"
 		aria-controls="navbarSupportedContent" aria-expanded="false"
